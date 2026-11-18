@@ -12,18 +12,47 @@ public class Fraction{
 		numerator = n;
 		if (d != 0){
 			denominator = d;
-		} else System.out.println("Denominator cannot be 0");
+		} else System.out.println("Error: Denominator cannot be 0.");
 	}
 	
 	public Fraction(String str){
-		for (int i = 0; i < str.length(); i++){
-			if (str.charAt(i) == '/'){
-				numerator = Integer.parseInt(str.substring(0, i));
-				denominator = Integer.parseInt(str.substring(i+1));
-			}
-		}
+		int i = str.indexOf("/");
+			numerator = Integer.parseInt(str.substring(0, i));
+		if (!str.substring(i+1).equals("0")){
+			denominator = Integer.parseInt(str.substring(i+1));
+		} else System.out.println("Error: Denominator cannot be 0.");
+	}
+	
+	public Fraction(Fraction f){
+		numerator = f.numerator;
+		denominator = f.denominator;
 	}
 	//behaviour methods
+	//accessors
+	public int getNum(){
+		return numerator;
+	}
 	
+	public int getDem(){
+		return denominator;
+	}
 	
+	public String toString(){
+		return numerator + "/" + denominator;
+	}
+	
+	public double toDouble(){
+		return ((double)numerator)/((double) denominator);
+	}
+	
+	//mutator
+	public void setNum(int n){
+		numerator = n;
+	}
+	
+	public void setDen(int d){
+		if (d != 0){
+			denominator = d;
+		} else System.out.println("Error: Denominator cannot be 0.");
+	}
 }
